@@ -12,8 +12,9 @@ namespace hw_m7
         static void Main(string[] args)
         {
 
-            string path = @"E:\directory";
-            Worker worker = new Worker();
+			//string path = @"C:\Users\respa\Desktop\Hobby\C# Learning\For File.Exist\Directory.txt";
+			Repository rep = new Repository();
+			
 
             while (true)
             {
@@ -32,7 +33,11 @@ namespace hw_m7
                 } 
                 else if (choise == 1)
                 {
-                    worker.CreateWorker(worker, path);
+					rep.AddNewWorker();
+				}
+				else if (choise == 2)
+				{
+					
                 }
             }
         }
