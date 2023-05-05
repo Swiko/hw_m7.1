@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Data;
 
 namespace hw_m7
 {
@@ -55,8 +56,40 @@ namespace hw_m7
 
         public void AddNewWorker()
     {
+            if (File.Exists(path))
+            {
+                workers = new Worker[1];
 
+                StreamWriter sw = new StreamWriter(path);
 
+                workers[0].workerId = GetNewId(path);
+                sw.WriteLine(workers[0].workerId + "#");
+                workers[0].recordCreationDate = DateTime.Now;
+                sw.WriteLine(workers[0].recordCreationDate + "#");
+                workers[0].workerFullName = Console.ReadLine();
+                sw.WriteLine(workers[0].workerFullName + "#");
+                workers[0].workerAge = int.Parse(Console.ReadLine());
+                sw.WriteLine(workers[0].workerAge + "#");
+                workers[0].workerGrowth = int.Parse(Console.ReadLine());
+                sw.WriteLine(workers[0].workerGrowth + "#");
+                workers[0].workerDateOfBirth = DateTime.Parse(Console.ReadLine());
+                sw.WriteLine(workers[0].workerDateOfBirth + "#");
+                workers[0].workerPlaceOfBirth = Console.ReadLine();
+                sw.WriteLine(workers[0].workerPlaceOfBirth + "#");
 
+                sw.Close();
+            }
+            else 
+            {
+                File.Create(path);
+                AddNewWorker();
+            }
+
+    }
+
+        public int GetNewId(string path)
+        {
+            return File.ReadAllLines(path).Length + 1;
+        }
     }
 }
