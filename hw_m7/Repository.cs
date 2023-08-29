@@ -13,10 +13,11 @@ namespace hw_m7
 
         public Worker[] workers;
 
-        private string path = @"C:\Users\respa\Desktop\Hobby\C# Learning\For File.Exist\Directory.txt";
+        private string path = @"D:\C# Learning\Directory.txt";
 
-        public void GetAllWorkers(string path)
+        public Worker[] GetAllWorkers()
         {
+
             using (StreamReader sr = new StreamReader(path))
             {
                 string line = sr.ReadLine();
@@ -24,7 +25,7 @@ namespace hw_m7
                 while ((line = sr.ReadLine()) != null)
                 {
                     string[] lineArray = line.Split('#');
-                    for (int i = 0; i < File.ReadAllLines(path).Length; i ++)
+                    for (int i = 0; i < File.ReadAllLines(path).Length; i++)
                     {
                         workers[i].workerId = int.Parse(lineArray[0]);
                         workers[i].recordCreationDate = DateTime.Parse(lineArray[1]);
@@ -35,61 +36,87 @@ namespace hw_m7
                         workers[i].workerPlaceOfBirth = lineArray[6];
                     }
                 }
-
             }
-
+            return workers;
         }
 
-        public void ShowAllWorkers(Worker[] workers)
+        public void GetWorkerByID()
         {
-            foreach (Worker worker in workers)
+            Console.WriteLine("What`s ID you want to print?");
+            int ReturnedId = int.Parse(Console.ReadLine());
+
+            GetAllWorkers();
+            
+
+            for (int i = 0; i < workers.Length; i++)
             {
-                Console.Write(worker.workerId);
-                Console.Write(worker.workerFullName);
-                Console.Write(worker.workerAge);
-                Console.Write(worker.workerGrowth);
-                Console.Write(worker.workerDateOfBirth);
-                Console.Write(worker.workerPlaceOfBirth);
-                Console.WriteLine(worker.workerDateOfBirth);
+                if (workers[i].workerId == ReturnedId)
+                {
+                    Console.WriteLine(workers.Print());
+                }
+            }
+        }
+
+        public void GetWorkersBetweenTwoDates()
+        {
+            Console.WriteLine("Input first date:");
+            DateTime GetWorkersFrom = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Input second date:");
+            DateTime GetWorkersTo = DateTime.Parse(Console.ReadLine());
+
+            GetAllWorkers();
+
+            for(int i = 0; i < workers.Length; i ++)
+            {
+                if (GetWorkersFrom > workers[i].recordCreationDate && GetWorkersTo < workers[i].recordCreationDate)
+                {
+                    
+                }
+            }
+        }
+
+        public void ShowAllWorkers()
+        {
+            using (StreamReader sr = new StreamReader(path))
+            {
+                string line = null;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    string[] lineArray = line.Split('#');
+                    foreach (string words in lineArray)
+                    {
+                        Console.WriteLine(words);
+                        
+                    }
+                }
             }
         }
 
         public void AddNewWorker()
-    {
-            if (File.Exists(path))
-            {
-                workers = new Worker[1];
+        {
+            if(!File.Exists(path)) { File.Create(path); } 
+            Worker newWorker = new Worker();
 
-                StreamWriter sw = new StreamWriter(path);
+            newWorker.workerId = GetNewId(path);
+            Console.WriteLine("Input worker full name");
+            newWorker.workerFullName = Console.ReadLine();
+            Console.WriteLine("Input worker age");
+            newWorker.workerAge = int.Parse(Console.ReadLine());
+            Console.WriteLine("Input worker growth");
+            newWorker.workerGrowth = int.Parse(Console.ReadLine());
+            Console.WriteLine("Input worker date of birth");
+            newWorker.workerDateOfBirth = DateTime.Parse(Console.ReadLine());
+            Console.WriteLine("Input worker place of birth");
+            newWorker.workerPlaceOfBirth = Console.ReadLine();
 
-                workers[0].workerId = GetNewId(path);
-                sw.WriteLine(workers[0].workerId + "#");
-                workers[0].recordCreationDate = DateTime.Now;
-                sw.WriteLine(workers[0].recordCreationDate + "#");
-                workers[0].workerFullName = Console.ReadLine();
-                sw.WriteLine(workers[0].workerFullName + "#");
-                workers[0].workerAge = int.Parse(Console.ReadLine());
-                sw.WriteLine(workers[0].workerAge + "#");
-                workers[0].workerGrowth = int.Parse(Console.ReadLine());
-                sw.WriteLine(workers[0].workerGrowth + "#");
-                workers[0].workerDateOfBirth = DateTime.Parse(Console.ReadLine());
-                sw.WriteLine(workers[0].workerDateOfBirth + "#");
-                workers[0].workerPlaceOfBirth = Console.ReadLine();
-                sw.WriteLine(workers[0].workerPlaceOfBirth + "#");
+            File.AppendAllText(path, newWorker.Print());
+        }
 
-                sw.Close();
-            }
-            else 
-            {
-                File.Create(path);
-                AddNewWorker();
-            }
-
-    }
-
-        public int GetNewId(string path)
+        private int GetNewId(string path)
         {
             return File.ReadAllLines(path).Length + 1;
         }
+
+
     }
 }

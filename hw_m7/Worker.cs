@@ -18,7 +18,7 @@ namespace hw_m7
         public DateTime workerDateOfBirth;
         public string workerPlaceOfBirth;
 
-        // Конструктор Структуры
+
         public Worker(int id, DateTime dateOfCreation, string fullName, int age, int growth, DateTime dateOfBirth, string placeOfBirth)
         {
             this.workerId = id;
@@ -30,11 +30,17 @@ namespace hw_m7
             this.workerPlaceOfBirth = placeOfBirth;
         }
 
-        //Функция записи в файл
-        private string Print()
+        public Worker(int workerId, string fullName, int age, int growth, DateTime dateOfBirth, string placeOfBirth) :
+            this(workerId, DateTime.Now, fullName, age, growth, dateOfBirth, placeOfBirth)
         {
-            return $"{workerId}#{recordCreationDate}#{workerFullName}#{workerAge}#{workerGrowth}#{workerDateOfBirth}#{workerPlaceOfBirth}\n";
-            }
+
+        }
+
+        public string Print()
+        {
+            return $"{this.workerId}#{this.recordCreationDate}#{this.workerFullName}#{this.workerAge}#{this.workerGrowth}#{this.workerDateOfBirth}#{this.workerPlaceOfBirth}\n";
+        }
 
     }
+
 }

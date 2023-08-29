@@ -12,7 +12,6 @@ namespace hw_m7
         static void Main(string[] args)
         {
 
-			//string path = @"C:\Users\respa\Desktop\Hobby\C# Learning\For File.Exist\Directory.txt";
 			Repository rep = new Repository();
 			
 
@@ -22,23 +21,34 @@ namespace hw_m7
                 Console.Write("Menu: \n Input 0 - for close programm: " +
                     "                \n Input 1 - for add new worker: " +
                     "                \n Input 2 - for print repository: " +
+                    "                \n Input 3 - for get workers between two dates" +
+                    "                \n Input 4 - for get worker by id" +
                     "                \n ");
 
                 int choise = int.Parse(Console.ReadLine());
+
+
+                switch (choise)
+                {
+                    case 0: break;
+
+                    case 1: rep.AddNewWorker();
+                        break;
+
+                    case 2: rep.ShowAllWorkers();
+                        break;
+
+                    case 3: rep.GetWorkersBetweenTwoDates();
+                        break;
+
+                    case 4: rep.GetWorkerByID();
+                        break;
+
+                    default: Console.WriteLine("Unknown command");
+                        break;
+                }
                 
 
-                if (choise == 0)
-                {
-                    break;
-                } 
-                else if (choise == 1)
-                {
-					rep.AddNewWorker();
-				}
-				else if (choise == 2)
-				{
-					
-                }
             }
         }
     }
