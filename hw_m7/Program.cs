@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
 namespace hw_m7
 {
@@ -32,7 +27,8 @@ namespace hw_m7
                 {
                     case 0: break;
 
-                    case 1: rep.AddNewWorker();
+                    case 1:
+                        rep.AddNewWorker();
                         break;
 
                     case 2: rep.ShowAllWorkers();
