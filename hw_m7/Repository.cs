@@ -50,7 +50,7 @@ namespace hw_m7
 
             for (int i = 0; i < workers.Length; i++)
             {
-                if (workers[i].workerId == ReturnedId)
+                if (this.workers[i].workerId == ReturnedId)
                 {
                     Console.WriteLine(workers.Print());
                 }
@@ -86,7 +86,6 @@ namespace hw_m7
                     foreach (string words in lineArray)
                     {
                         Console.WriteLine(words);
-                        
                     }
                 }
             }
