@@ -43,6 +43,9 @@ namespace hw_m7
                     case 4:
                         rep.GetWorkerByID();
                         break;
+                    case 5:
+                        rep.DeleteWorker();
+                        break;
 
                     default:
                         Console.WriteLine("Unknown command");

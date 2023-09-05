@@ -146,6 +146,19 @@ namespace hw_m7
         }
 
 
+        public void DeleteWorker()
+        {
+            
+            Console.WriteLine("Input remote worker ID:");
+            int remoteId = int.Parse(Console.ReadLine());
+
+            Array.Clear(this.workers, remoteId-1, 1);
+            index--;
+            this.Save(path);
+
+        }
+
+
         /// <summary>
         /// Сохранение данных в файл
         /// </summary>
