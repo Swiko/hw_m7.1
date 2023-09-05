@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace hw_m7
 {
@@ -7,8 +8,8 @@ namespace hw_m7
         static void Main(string[] args)
         {
 
-			Repository rep = new Repository();
-			
+            string path = @"D:\C# Learning\Directory.txt";
+            Repository rep = new Repository(path);
 
             while (true)
             {
@@ -31,19 +32,23 @@ namespace hw_m7
                         rep.AddNewWorker();
                         break;
 
-                    case 2: rep.ShowAllWorkers();
+                    case 2:
+                        rep.ShowAllWorkers();
                         break;
 
-                    case 3: rep.GetWorkersBetweenTwoDates();
+                    case 3:
+                        rep.GetWorkersBetweenTwoDates();
                         break;
 
-                    case 4: rep.GetWorkerByID();
+                    case 4:
+                        rep.GetWorkerByID();
                         break;
 
-                    default: Console.WriteLine("Unknown command");
+                    default:
+                        Console.WriteLine("Unknown command");
                         break;
                 }
-                
+
 
             }
         }

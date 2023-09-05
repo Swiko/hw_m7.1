@@ -30,15 +30,17 @@ namespace hw_m7
             this.workerPlaceOfBirth = placeOfBirth;
         }
 
+
         public Worker(int workerId, string fullName, int age, int growth, DateTime dateOfBirth, string placeOfBirth) :
             this(workerId, DateTime.Now, fullName, age, growth, dateOfBirth, placeOfBirth)
         {
 
         }
 
+
         public string Print()
         {
-            return $"{this.workerId}#{this.recordCreationDate}#{this.workerFullName}#{this.workerAge}#{this.workerGrowth}#{this.workerDateOfBirth}#{this.workerPlaceOfBirth}\n";
+            return $"{this.workerId, 15}, {this.recordCreationDate, 15}, {this.workerFullName, 15}, {this.workerAge, 15}, {this.workerGrowth, 15}, {this.workerDateOfBirth, 15}, {this.workerPlaceOfBirth, 10}\n";
         }
 
     }
