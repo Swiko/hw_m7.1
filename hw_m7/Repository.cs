@@ -33,7 +33,7 @@ namespace hw_m7
         /// </summary>
         public Worker[] GetAllWorkers()
         {
-            using (StreamReader sr = new StreamReader(this.path))
+            using (StreamReader sr = new StreamReader(path))
             {
                 
                 while (!sr.EndOfStream)

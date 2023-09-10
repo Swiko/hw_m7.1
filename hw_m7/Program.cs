@@ -9,6 +9,7 @@ namespace hw_m7
         {
 
             string path = @"D:\C# Learning\Directory.txt";
+            File.Create(path).Dispose();
             Repository rep = new Repository(path);
 
             while (true)
