@@ -71,10 +71,7 @@ namespace hw_m7
             {
                 if (this.workers[i].workerId == ReturnedId)
                 {
-                    Console.WriteLine(this.workers[i].Print());
-                } else
-                {
-                    continue;
+                    Console.WriteLine(this.workers.Print());
                 }
             }
         }
